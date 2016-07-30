@@ -1,0 +1,32 @@
+<h1>Card Pairs</h1>
+<div class="row">
+  <div class="col-md-12 text-center">
+    <label class="radio-inline">
+        <input type="radio"
+               name="boardDimension"
+               ng-model="ctrl.board"
+               ng-change="ctrl.createBoard({cols: 4, rows: 4})"
+               value="4">4x4
+    </label>
+    <label class="radio-inline">
+        <input type="radio"
+               name="boardDimension"
+               ng-model="ctrl.board"
+               ng-change="ctrl.createBoard({cols: 8, rows: 8})"
+               value="8">8x8
+    </label>
+    <label class="radio-inline">
+        <input type="radio"
+               name="boardDimension"
+               ng-model="ctrl.board"
+               ng-change="ctrl.createCustomBoard()"
+               value="-1">custom
+    </label>
+  </div>
+</div>
+<div class="row"
+     ng-repeat="rows in ctrl.getArray(ctrl.dimension.rows)">
+  <div class="col-md-12">
+    <card ng-repeat="col in ctrl.getArray(ctrl.dimension.cols)"></card>
+  </div>
+</div>
