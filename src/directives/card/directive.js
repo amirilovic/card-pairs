@@ -1,3 +1,4 @@
+import './style.css';
 import angular from 'angular';
 import template from './template.html';
 
