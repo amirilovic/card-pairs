@@ -16,8 +16,6 @@
   <div class="col-md-12">
     <card ng-repeat="col in $ctrl.dimension | range"
           item="$ctrl.getCard(row, col)"
-          on-flip="$ctrl.flip($ctrl.getCard(row, col))"
-          open="$ctrl.isCardOpen($ctrl.getCard(row, col))"
-          resolved="$ctrl.isCardResolved($ctrl.getCard(row, col))"></card>
+          on-flip="$ctrl.flip($ctrl.getCard(row, col))"></card>
   </div>
 </div>

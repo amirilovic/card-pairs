@@ -1,6 +1,6 @@
 import angular from 'angular';
 import template from './template.html';
-import cardModule from '../card/directive';
+import cardModule from '../card/component';
 import BoardController from './controller';
 import rangeModule from '../../filters/range';
 

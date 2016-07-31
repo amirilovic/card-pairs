@@ -14,12 +14,6 @@ export default class {
       new Board(this.$timeout, parseInt(prompt('dim?'), 10)) : 
       new Board(this.$timeout, dimension);
   }
-  isCardOpen(card) {
-    return this.board.isCardOpen(card);
-  }
-  isCardResolved(card) {
-    return this.board.isCardResolved(card);
-  }
   getCard(row, col) {
     return this.board.cards[row * this.board.dimension + col];
   }
