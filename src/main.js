@@ -1,6 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import angular from 'angular';
-import boardModule from './board/directive';
+import boardModule from './directives/board/directive';
 
 const cardPairs = angular.module('cardPairs', [
   boardModule.name

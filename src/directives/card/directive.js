@@ -7,7 +7,8 @@ export default
     .directive('card', () => {
       return {
         scope: {
-          item: '='
+          ngModel: '=',
+          onFlip:  '&'
         },
         bindToController: true,
         controller:       () => {},

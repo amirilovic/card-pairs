@@ -1,0 +1,21 @@
+<h1>Card Pairs</h1>
+<div class="row">
+  <div class="col-md-12 text-center">
+    <label class="radio-inline"
+           ng-repeat="option in ctrl.options">
+        <input type="radio"
+               name="dimensins"
+               ng-model="ctrl.selectedOption"
+               ng-change="ctrl.createBoard(option.dimension)"
+               ng-value="option">{{option.name}}
+    </label>
+  </div>
+</div>
+<div class="row"
+     ng-repeat="row in ctrl.board.dimension | range">
+  <div class="col-md-12">
+    <card ng-repeat="col in ctrl.board.dimension | range"
+          ng-model="ctrl.board.cards[row * ctrl.board.dimension + col]"
+          on-flip="ctrl.onFlip(card)"></card>
+  </div>
+</div>
