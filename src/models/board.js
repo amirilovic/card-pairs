@@ -5,13 +5,16 @@ export default class {
     constructor($timeout, dimension) {
         this.$timeout = $timeout;
         this.dimension = dimension;
-        this.cards = this.createCards(this.dimension);
+        this._cards = this.createCards(this.dimension);
+    }
+    get cards() {
+        return this._cards;
     }
     get openedCards() {
-        return this.cards.filter((card) => card.status === CardStatus.OPENED);
+        return this._cards.filter((card) => card.status === CardStatus.OPENED);
     }
     get resolvedCards() {
-        return this.cards.filter((card) => card.status === CardStatus.RESOLVED);
+        return this._cards.filter((card) => card.status === CardStatus.RESOLVED);
     }
     createCards(dimension) {
         const cards = [];
