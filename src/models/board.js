@@ -5,10 +5,14 @@ export default class {
     constructor($timeout, dimension) {
         this.$timeout = $timeout;
         this.dimension = dimension;
-        this._cards = this.createCards(this.dimension);
+        this._cards = this._createCards(this.dimension);
+        this._rows = this._createRows(this.dimension);
     }
     get cards() {
         return this._cards;
+    }
+    get rows() {
+        return this._rows;
     }
     get openedCards() {
         return this._cards.filter((card) => card.status === CardStatus.OPENED);
@@ -16,13 +20,25 @@ export default class {
     get resolvedCards() {
         return this._cards.filter((card) => card.status === CardStatus.RESOLVED);
     }
-    createCards(dimension) {
+    _createCards(dimension) {
         const cards = [];
         for(let num = 1; num <= (dimension * dimension) / 2; num++) {
             cards.push(new Card(num));
             cards.push(new Card(num));
         }
         return cards;
+    }
+    _createRows(dimension) {
+        const rows = [];
+        for(let i = 0; i < dimension; i++) {
+            const row = [];
+            for(let y = 0; y < dimension; y++) {
+                const card = this._cards[i * dimension + y];
+                row.push(card);
+            }
+            rows.push(row);
+        }
+        return rows;
     }
     flip(card) {
         if(card.status === CardStatus.RESOLVED) return;

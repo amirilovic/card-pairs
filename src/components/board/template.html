@@ -12,10 +12,10 @@
   </div>
 </div>
 <div class="row"
-     ng-repeat="row in $ctrl.dimension | range">
+     ng-repeat="row in $ctrl.board.rows">
   <div class="col-md-12">
-    <card ng-repeat="col in $ctrl.dimension | range"
-          item="$ctrl.getCard(row, col)"
-          on-flip="$ctrl.flip($ctrl.getCard(row, col))"></card>
+    <card ng-repeat="card in row"
+          item="card"
+          on-flip="$ctrl.flip(card)"></card>
   </div>
 </div>
