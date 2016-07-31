@@ -6,10 +6,5 @@
 }
 
 .resolved {
-    background-color: green;
-    border-radius: 25px;
-    height: 30px;
-    width: 30px;
-    display: block;
-    line-height: 30px;
+    border-color: white;
 }

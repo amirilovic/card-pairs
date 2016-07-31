@@ -9,8 +9,8 @@ export default
       bindings: {
         item:     '=',
         open:     '<',
-        onFlip:   '&',
-        resolved: '<'
+        resolved: '<',
+        onFlip:   '&'
       },
       template: template
     });
