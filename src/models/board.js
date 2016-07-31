@@ -16,6 +16,21 @@ export default class {
     get resolvedCards() {
         return this._cards.filter((card) => card.status === CardStatus.RESOLVED);
     }
+    flip(card) {
+        if(card.status === CardStatus.RESOLVED) return;
+        if(card.status === CardStatus.CLOSED && this.openedCards.length < 2) {
+            card.open();
+            if(this.openedCards.length === 2) {
+                if(this.openedCards[0].label === this.openedCards[1].label) {
+                    this.openedCards.forEach((card) => card.resolve());
+                } else {
+                    this.$timeout(() => {
+                        this.openedCards.forEach((card) => card.close());
+                    }, 1000);
+                }
+            }
+        }
+    }
     _createCards(dimension) {
         const cards = [];
         for(let num = 1; num <= (dimension * dimension) / 2; num++) {
@@ -35,20 +50,5 @@ export default class {
             rows.push(row);
         }
         return rows;
-    }
-    flip(card) {
-        if(card.status === CardStatus.RESOLVED) return;
-        if(card.status === CardStatus.CLOSED && this.openedCards.length < 2) {
-            card.open();
-            if(this.openedCards.length === 2) {
-                if(this.openedCards[0].label === this.openedCards[1].label) {
-                    this.openedCards.forEach((card) => card.resolve());
-                } else {
-                    this.$timeout(() => {
-                        this.openedCards.forEach((card) => card.close());
-                    }, 1000);
-                }
-            }
-        }
     }
 }
