@@ -1,4 +1,5 @@
 import Desk from './desk';
+import Table from './table';
 import {CardStatus} from './card';
 
 export default class {
@@ -6,10 +7,10 @@ export default class {
         this.$timeout = $timeout;
         this._attemptsCount = 0;
         this._desk = new Desk((dimension * dimension) / 2);
-        this._rows = this._createRows(dimension, this._desk.cards);
+        this._table = new Table(dimension, this._desk.cards);
     }
     get attemptsCount() { return this._attemptsCount; }
-    get rows() { return this._rows; }
+    get table() { return this._table; }
     flip(card) {
         if(card.status === CardStatus.CLOSED && this._desk.openedCards.length < 2) {
             card.open();
@@ -24,17 +25,5 @@ export default class {
                 }
             }
         }
-    }
-    _createRows(dimension, cards) {
-        const rows = [];
-        for(let i = 0; i < dimension; i++) {
-            const row = [];
-            for(let y = 0; y < dimension; y++) {
-                const card = cards[i * dimension + y];
-                row.push(card);
-            }
-            rows.push(row);
-        }
-        return rows;
     }
 }
