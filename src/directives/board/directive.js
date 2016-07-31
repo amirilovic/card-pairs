@@ -4,6 +4,8 @@ import cardModule from '../card/directive';
 import BoardController from './controller';
 import rangeModule from '../../filters/range';
 
+BoardController.$inject = ['$timeout'];
+
 export default
   angular
     .module('boardModule', [

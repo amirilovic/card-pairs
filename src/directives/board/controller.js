@@ -1,21 +1,29 @@
 import Board from '../../models/board';
 
 export default class {
-  constructor() {
+  constructor($timeout) {
+    this.$timeout = $timeout;
     this.options = [
-      {dimension: 4, name: '4x4'},
-      {dimension: 8, name: '8x8'},
-      {dimension: -1, name: 'custom'}
+      {dimension: 4, title: '4x4'},
+      {dimension: 8, title: '8x8'},
+      {dimension: -1, title: 'custom'}
     ];    
   }
   createBoard(dimension) {
-    if(dimension === -1) {
-      this.board = new Board(parseInt(prompt('dim?'), 10));
-    } else {
-      this.board = new Board(dimension);
-    }
+    this.board = dimension === -1 ?
+      new Board(this.$timeout, parseInt(prompt('dim?'), 10)) : 
+      new Board(this.$timeout, dimension);
   }
-  onFlip(card) {
-      this.board.flip(card);
+  isCardOpen(card) {
+    return this.board.isCardOpen(card);
+  }
+  getCard(row, col) {
+    return this.board.cards[row * this.board.dimension + col];
+  }
+  flip(card) {
+    this.board.flip(card);
+  }
+  get dimension() {
+    return this.board ? this.board.dimension : 0;
   }
 }

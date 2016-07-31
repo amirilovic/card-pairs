@@ -8,8 +8,9 @@ export default
     .directive('card', () => {
       return {
         scope: {
-          ngModel: '=',
-          onFlip:  '&'
+          item:   '=',
+          open:   '<',
+          onFlip: '&'
         },
         bindToController: true,
         controller:       () => {},

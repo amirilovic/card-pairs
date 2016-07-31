@@ -7,15 +7,16 @@
                name="dimensins"
                ng-model="ctrl.selectedOption"
                ng-change="ctrl.createBoard(option.dimension)"
-               ng-value="option">{{option.name}}
+               ng-value="option">{{option.title}}
     </label>
   </div>
 </div>
 <div class="row"
-     ng-repeat="row in ctrl.board.dimension | range">
+     ng-repeat="row in ctrl.dimension | range">
   <div class="col-md-12">
-    <card ng-repeat="col in ctrl.board.dimension | range"
-          ng-model="ctrl.board.cards[row * ctrl.board.dimension + col]"
-          on-flip="ctrl.onFlip(card)"></card>
+    <card ng-repeat="col in ctrl.dimension | range"
+          item="ctrl.getCard(row, col)"
+          on-flip="ctrl.flip(ctrl.getCard(row, col))"
+          open="ctrl.isCardOpen(ctrl.getCard(row, col))"></card>
   </div>
 </div>
