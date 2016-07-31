@@ -7,9 +7,10 @@ export default
     .module('cardModule', [])
     .component('card', {
       bindings: {
-        item:   '=',
-        open:   '<',
-        onFlip: '&'
+        item:     '=',
+        open:     '<',
+        onFlip:   '&',
+        resolved: '<'
       },
       template: template
     });

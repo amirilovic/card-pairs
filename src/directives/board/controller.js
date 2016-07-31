@@ -17,6 +17,9 @@ export default class {
   isCardOpen(card) {
     return this.board.isCardOpen(card);
   }
+  isCardResolved(card) {
+    return this.board.isCardResolved(card);
+  }
   getCard(row, col) {
     return this.board.cards[row * this.board.dimension + col];
   }
