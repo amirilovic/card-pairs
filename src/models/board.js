@@ -5,8 +5,13 @@ export default class {
     constructor($timeout, dimension) {
         this.$timeout = $timeout;
         this.dimension = dimension;
+        this._attemptsCount = 0;
         this._cards = this._createCards(this.dimension);
+        this._shuffle(this._cards);
         this._rows = this._createRows(this.dimension, this._cards);
+    }
+    get attemptsCount() {
+        return this._attemptsCount;
     }
     get cards() { return this._cards; }
     get rows() { return this._rows; }
@@ -21,6 +26,7 @@ export default class {
         if(card.status === CardStatus.CLOSED && this.openedCards.length < 2) {
             card.open();
             if(this.openedCards.length === 2) {
+                this._attemptsCount++;
                 if(this.openedCards[0].label === this.openedCards[1].label) {
                     this.openedCards.forEach((card) => card.resolve());
                 } else {
@@ -50,5 +56,14 @@ export default class {
             rows.push(row);
         }
         return rows;
+    }
+    _shuffle(a) {
+        let j, x, i;
+        for (i = a.length; i; i--) {
+            j = Math.floor(Math.random() * i);
+            x = a[i - 1];
+            a[i - 1] = a[j];
+            a[j] = x;
+        }
     }
 }

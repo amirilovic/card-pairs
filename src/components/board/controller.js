@@ -20,4 +20,7 @@ export default class {
   get rows() {
     return this.board ? this.board.rows : [];
   }
+  get attemptsCount() {
+    return this.board ? this.board.attemptsCount : undefined;
+  }
 }

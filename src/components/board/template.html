@@ -1,6 +1,6 @@
 <h1>Card Pairs</h1>
 <div class="row">
-  <div class="col-md-12">
+  <div class="col-sm-6">
     <label class="radio-inline"
            ng-repeat="option in $ctrl.options">
         <input type="radio"
@@ -9,6 +9,9 @@
                ng-change="$ctrl.createBoard(option.dimension)"
                ng-value="option">{{option.title}}
     </label>
+  </div>
+  <div class="col-sm-6">
+    <span ng-show="$ctrl.attemptsCount >= 0">attempts: {{$ctrl.attemptsCount}}</span>
   </div>
 </div>
 <div class="row"
