@@ -14,13 +14,10 @@ export default class {
       new Board(this.$timeout, parseInt(prompt('dim?'), 10)) : 
       new Board(this.$timeout, dimension);
   }
-  getCard(row, col) {
-    return this.board.cards[row * this.board.dimension + col];
-  }
   flip(card) {
     this.board.flip(card);
   }
-  get dimension() {
-    return this.board ? this.board.dimension : 0;
+  get rows() {
+    return this.board ? this.board.rows : [];
   }
 }
