@@ -1,12 +1,14 @@
 <button type="button"
         class="btn btn-default btn-lg card"
-        ng-class="{'card-resolved': $ctrl.item.status === 'resolved'}"
+        ng-class="{'card-resolved': $ctrl.item.status === $ctrl.CardStatus.RESOLVED}"
         ng-click="$ctrl.onFlip({card: $ctrl.item})"
-        ng-disabled="$ctrl.item.status === 'resolved'">
-  <span ng-show="$ctrl.item.status === 'opened' || $ctrl.item.status === 'resolved'">
-    {{$ctrl.item.status === 'resolved' ? '' : $ctrl.item.label}}
+        ng-disabled="$ctrl.item.status === $ctrl.CardStatus.RESOLVED">
+  <span ng-show="$ctrl.item.status === $ctrl.CardStatus.OPENED">
+    {{$ctrl.item.label}}
+  </span>
+  <span ng-show="$$ctrl.item.status === $ctrl.CardStatus.RESOLVED">
   </span>
   <span class="glyphicon glyphicon-asterisk"
-        ng-hide="$ctrl.item.status === 'opened' || $ctrl.item.status === 'resolved'">
+        ng-show="$ctrl.item.status === $ctrl.CardStatus.CLOSED">
   </span>
 </button>

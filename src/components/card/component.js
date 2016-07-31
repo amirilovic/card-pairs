@@ -1,6 +1,7 @@
 import './style.css';
 import angular from 'angular';
 import template from './template.html';
+import {CardStatus} from '../../models/card';
 
 export default
   angular
@@ -9,6 +10,9 @@ export default
       bindings: {
         item:   '=',
         onFlip: '&'
+      },
+      controller: function() {
+        this.CardStatus = CardStatus;
       },
       template: template
     });

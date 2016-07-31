@@ -1,4 +1,5 @@
 import Card from './card';
+import {CardStatus} from './card';
 
 export default class {
     constructor($timeout, dimension) {
@@ -7,10 +8,10 @@ export default class {
         this.cards = this.createCards(this.dimension);
     }
     get openedCards() {
-        return this.cards.filter((card) => card.status === 'opened');
+        return this.cards.filter((card) => card.status === CardStatus.OPENED);
     }
     get resolvedCards() {
-        return this.cards.filter((card) => card.status === 'resolved');
+        return this.cards.filter((card) => card.status === CardStatus.RESOLVED);
     }
     createCards(dimension) {
         const cards = [];
@@ -21,15 +22,15 @@ export default class {
         return cards;
     }
     flip(card) {
-        if(card.status === 'resolved') return;
-        if(card.status === 'closed' && this.openedCards.length < 2) {
-            card.status = 'opened';
+        if(card.status === CardStatus.RESOLVED) return;
+        if(card.status === CardStatus.CLOSED && this.openedCards.length < 2) {
+            card.open();
             if(this.openedCards.length === 2) {
                 if(this.openedCards[0].label === this.openedCards[1].label) {
-                    this.openedCards.forEach((card) => card.status = 'resolved');
+                    this.openedCards.forEach((card) => card.resolve());
                 } else {
                     this.$timeout(() => {
-                        this.openedCards.forEach((card) => card.status = 'closed');
+                        this.openedCards.forEach((card) => card.close());
                     }, 1000);
                 }
             }
