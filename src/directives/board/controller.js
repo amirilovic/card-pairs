@@ -16,6 +16,6 @@ export default class {
     }
   }
   onFlip(card) {
-      card.open = true;
+      this.board.flip(card);
   }
 }
