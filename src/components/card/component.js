@@ -1,7 +1,7 @@
 import './style.css';
 import angular from 'angular';
 import template from './template.html';
-import {CardStatus} from '../../models/card';
+import {CardStatus} from '../../domain/card';
 
 export default
   angular

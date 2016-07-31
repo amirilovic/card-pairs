@@ -1,5 +1,4 @@
-import Card from './card';
-import {CardStatus} from './card';
+import Card, {CardStatus} from './card';
 
 export default class {
     constructor($timeout, dimension) {
