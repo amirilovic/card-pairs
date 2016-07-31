@@ -1,9 +1,8 @@
 import Card, {CardStatus} from './card';
 
 export default class {
-    constructor(dimension) {
-        this.dimension = dimension;
-        this._cards = this._createCards(this.dimension);
+    constructor(pairsNumber) {
+        this._cards = this._createCards(pairsNumber);
         this._shuffle(this._cards);
     }
     get cards() { return this._cards; }
@@ -13,9 +12,9 @@ export default class {
     get resolvedCards() {
         return this._cards.filter((card) => card.status === CardStatus.RESOLVED);
     }
-    _createCards(dimension) {
+    _createCards(pairsNumber) {
         const cards = [];
-        for(let num = 1; num <= (dimension * dimension) / 2; num++) {
+        for(let num = 1; num <= pairsNumber; num++) {
             cards.push(new Card(num));
             cards.push(new Card(num));
         }

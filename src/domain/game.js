@@ -5,7 +5,7 @@ export default class {
     constructor($timeout, dimension) {
         this.$timeout = $timeout;
         this._attemptsCount = 0;
-        this._board = new Board(dimension);
+        this._board = new Board((dimension * dimension) / 2);
         this._rows = this._createRows(dimension, this._board.cards);
     }
     get attemptsCount() { return this._attemptsCount; }
