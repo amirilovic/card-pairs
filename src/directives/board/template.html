@@ -2,21 +2,21 @@
 <div class="row">
   <div class="col-md-12">
     <label class="radio-inline"
-           ng-repeat="option in ctrl.options">
+           ng-repeat="option in $ctrl.options">
         <input type="radio"
                name="dimensins"
-               ng-model="ctrl.selectedOption"
-               ng-change="ctrl.createBoard(option.dimension)"
+               ng-model="$ctrl.selectedOption"
+               ng-change="$ctrl.createBoard(option.dimension)"
                ng-value="option">{{option.title}}
     </label>
   </div>
 </div>
 <div class="row"
-     ng-repeat="row in ctrl.dimension | range">
+     ng-repeat="row in $ctrl.dimension | range">
   <div class="col-md-12">
-    <card ng-repeat="col in ctrl.dimension | range"
-          item="ctrl.getCard(row, col)"
-          on-flip="ctrl.flip(ctrl.getCard(row, col))"
-          open="ctrl.isCardOpen(ctrl.getCard(row, col))"></card>
+    <card ng-repeat="col in $ctrl.dimension | range"
+          item="$ctrl.getCard(row, col)"
+          on-flip="$ctrl.flip($ctrl.getCard(row, col))"
+          open="$ctrl.isCardOpen($ctrl.getCard(row, col))"></card>
   </div>
 </div>

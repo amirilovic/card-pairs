@@ -12,11 +12,7 @@ export default
       cardModule.name,
       rangeModule.name
     ])
-    .directive('board', () => {
-      return {
-        scope:        {},
-        template:     template,
-        controllerAs: 'ctrl',
-        controller:   BoardController
-      };
+    .component('board', {
+      template:   template,
+      controller: BoardController
     });
