@@ -1,1 +1,8 @@
-<span>card</span>
+<button type="button" class="btn btn-default btn-lg">
+  <span ng-show="ctrl.item.open">
+    {{ctrl.item.label}}
+  </span>
+  <span class="glyphicon glyphicon-asterisk"
+        ng-hide="ctrl.item.open">
+  </span>
+</button>

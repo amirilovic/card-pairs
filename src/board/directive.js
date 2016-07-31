@@ -1,28 +1,7 @@
 import angular from 'angular';
 import template from './template.html';
 import cardModule from '../card/directive';
-
-class BoardController {
-  constructor() {
-    this.board = 4;
-    this.dimension = {
-      rows: 4,
-      cols: 4
-    };
-  }
-  createBoard(dimension) {
-    this.dimension = dimension;
-  }
-  createCustomBoard() {
-    this.createBoard({
-      rows: parseInt(prompt('rows?'), 10),
-      cols: parseInt(prompt('cols?'), 10)
-    });
-  }
-  getArray(length) {
-    return [...Array(length).keys()];
-  }
-}
+import BoardController from './controller';
 
 export default
   angular
@@ -34,5 +13,14 @@ export default
         template:     template,
         controllerAs: 'ctrl',
         controller:   BoardController
+      };
+    })
+    .filter('range', () => {
+      return (n) => {
+        var res = [];
+        for (var i = 0; i < n; i++) {
+          res.push(i);
+        }
+        return res;
       };
     });

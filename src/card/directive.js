@@ -6,6 +6,12 @@ export default
     .module('cardModule', [])
     .directive('card', () => {
       return {
-        template: template
+        scope: {
+          item: '='
+        },
+        bindToController: true,
+        controller:       () => {},
+        controllerAs:     'ctrl',
+        template:         template
       };
     });
