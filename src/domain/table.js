@@ -2,7 +2,7 @@ import {CardStatus} from './card';
 
 export default class {
     constructor($timeout, dimension, cards) {
-        this.$timeout = $timeout;
+        this._$timeout = $timeout;
         this._cards = cards;
         this.rows = [];
         for(let i = 0; i < dimension; i++) {
@@ -16,22 +16,25 @@ export default class {
     }
     flip(card) {
         let validAttempt = 0;
-        if(card.status === CardStatus.CLOSED && this._openedCards.length < 2) {
+        if(card.status === CardStatus.CLOSED && this.openedCards.length < 2) {
             card.open();
-            if(this._openedCards.length === 2) {
+            if(this.openedCards.length === 2) {
                 validAttempt = 1;
-                if(this._openedCards[0].label === this._openedCards[1].label) {
-                    this._openedCards.forEach((card) => card.resolve());
+                if(this.openedCards[0].label === this.openedCards[1].label) {
+                    this.openedCards.forEach((card) => card.resolve());
                 } else {
-                    this.$timeout(() => {
-                        this._openedCards.forEach((card) => card.close());
+                    this._$timeout(() => {
+                        this.openedCards.forEach((card) => card.close());
                     }, 1000);
                 }
             }
         }
         return validAttempt;
     }
-    get _openedCards() {
+    get openedCards() {
         return this._cards.filter((card) => card.status === CardStatus.OPENED);
+    }
+    get resolvedCards() {
+        return this._cards.filter((card) => card.status === CardStatus.RESOLVED);
     }
 }

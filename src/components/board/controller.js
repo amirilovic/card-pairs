@@ -1,8 +1,9 @@
 import Game from '../../domain/game';
 
 export default class {
-  constructor($timeout) {
-    this.$timeout = $timeout;
+  constructor($timeout, localStorageService) {
+    this._$timeout = $timeout;
+    this._localStorageService = localStorageService;
     this.options = [
       {dimension: 4, title: '4x4'},
       {dimension: 8, title: '8x8'},
@@ -11,8 +12,8 @@ export default class {
   }
   createGame(dimension) {
     this._game = dimension === -1 ?
-      new Game(this.$timeout, parseInt(prompt('dim?'), 10)) : 
-      new Game(this.$timeout, dimension);
+      new Game(this._$timeout, this._localStorageService, parseInt(prompt('dim?'), 10)) : 
+      new Game(this._$timeout, this._localStorageService, dimension);
   }
   flip(card) {
     this._game.flip(card);
