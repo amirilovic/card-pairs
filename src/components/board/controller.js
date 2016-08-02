@@ -18,7 +18,7 @@ export default class {
     this._game.flip(card);
   }
   get rows() {
-    return this._game ? this._game.table.rows : [];
+    return this._game ? this._game.rows : [];
   }
   get attemptsCount() {
     return this._game ? this._game.attemptsCount : undefined;
