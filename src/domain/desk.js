@@ -1,4 +1,4 @@
-import Card from './card';
+import Card, {CardStatus} from './card';
 
 export default class {
     constructor(pairsNumber) {
@@ -6,6 +6,12 @@ export default class {
         this._shuffle(this._cards);
     }
     get cards() { return this._cards; }
+    get openedCards() {
+        return this.cards.filter((card) => card.status === CardStatus.OPENED);
+    }
+    get resolvedCards() {
+        return this.cards.filter((card) => card.status === CardStatus.RESOLVED);
+    }
     _createCards(pairsNumber) {
         const cards = [];
         for(let num = 1; num <= pairsNumber; num++) {
