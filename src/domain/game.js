@@ -23,11 +23,11 @@ export default class {
                 name:  prompt('name?'),
                 score: this._attemptsCount
             });
+            this._localStorageService.set('ranking', ranking);
             const rankingList =
                 ranking.sort((rank1, rank2) => rank1.score > rank2.score)
                        .map((rank) => `${rank.score} - ${rank.name}`);
             alert(rankingList.join('\n'));
-            this._localStorageService.set('ranking', ranking);
         }
     }
 }
