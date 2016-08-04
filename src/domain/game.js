@@ -3,12 +3,11 @@ import Table from './table';
 import {CardStatus} from './card';
 
 export default class {
-    constructor($timeout, localStorageService, dimension) {
+    constructor($timeout, localStorageService, shuffler, dimension) {
         this._$timeout = $timeout;
         this._localStorageService = localStorageService;
         this._attemptsCount = 0;
-        this._desk = new Desk(dimension * dimension);
-        this._desk .shuffle();
+        this._desk = new Desk(dimension * dimension, shuffler);
         this._table = new Table(dimension, this._desk);
     }
     get attemptsCount() { return this._attemptsCount; }

@@ -1,4 +1,5 @@
 import Game from '../../domain/game';
+import shuffler from '../../domain/shuffler';
 
 export default class {
   constructor($timeout, localStorageService) {
@@ -12,8 +13,8 @@ export default class {
   }
   createGame(dimension) {
     this._game = dimension === -1 ?
-      new Game(this._$timeout, this._localStorageService, parseInt(prompt('dim?'), 10)) : 
-      new Game(this._$timeout, this._localStorageService, dimension);
+      new Game(this._$timeout, this._localStorageService, shuffler, parseInt(prompt('dim?'), 10)) : 
+      new Game(this._$timeout, this._localStorageService, shuffler, dimension);
   }
   flip(card) {
     this._game.flip(card);
