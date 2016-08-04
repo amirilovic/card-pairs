@@ -1,9 +1,9 @@
 import Card, {CardStatus} from './card';
 
 export default class {
-    constructor(pairsNumber) {
+    constructor(cardsCount) {
         this._cards = [];
-        for(let num = 1; num <= pairsNumber; num++) {
+        for(let num = 1; num <= cardsCount / 2; num++) {
             this._cards.push(new Card(num));
             this._cards.push(new Card(num));
         }

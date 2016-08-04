@@ -4,21 +4,26 @@ import {CardStatus} from './card';
 
 export default class {
     constructor($timeout, localStorageService, dimension) {
+        this._$timeout = $timeout;
         this._localStorageService = localStorageService;
         this._attemptsCount = 0;
-        this._desk = new Desk((dimension * dimension) / 2);
+        this._desk = new Desk(dimension * dimension);
         this._desk .shuffle();
-        this._table = new Table($timeout, dimension, this._desk);
+        this._table = new Table(dimension, this._desk);
     }
     get attemptsCount() { return this._attemptsCount; }
     get rows() { return this._table.rows; }
     flip(card) {
-        this._attemptsCount += this._table.flip(card);
-        this._checkFinish();
-        
-    }
-    _checkFinish() {
-        if(this._desk.resolvedCards.length === this._desk.cards.length) {
+        const {attempt, missed, finish} = this._table.flip(card);
+        if(attempt) {
+            this._attemptsCount++;
+        }
+        if(missed) {
+            this._$timeout(() => {
+                this._desk.openedCards.forEach((card) => card.close());
+            }, 1000);
+        }
+        if(finish) {
             const ranking = this._localStorageService.get('ranking') || [];
             ranking.push({
                 name:  prompt('name?'),
